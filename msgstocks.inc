@@ -11,6 +11,10 @@
 // Message Stocks
 //
 
+#if defined _msgnatives_included
+	#endinput
+#endif
+
 #if defined _msgstocks_included
 	#endinput
 #endif
