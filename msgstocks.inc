@@ -21,7 +21,7 @@
 
 #define _msgstocks_included
 
-#define MSGSTOCKS_VERSION 1.0.1
+#define MSGSTOCKS_VERSION 1.1
 
 /**
  * @section Normal message stocks
@@ -1587,7 +1587,7 @@ stock te_display_glow_sprite(position[3], sprite, scale = 10, size = 10, brightn
  * @return              0 if "receiver" is non-zero and the client isn't connected,
  *                      1 otherwise
  */
- stock te_create_beam_ring_between_ent(startent, endent, sprite, startframe = 0, framerate = 30, life = 10, width = 10, noise = 0, r = 0, g = 0, b = 255, a = 75, speed = 0, receiver = 0, bool:reliable = true)
+stock te_create_beam_ring_between_ent(startent, endent, sprite, startframe = 0, framerate = 30, life = 10, width = 10, noise = 0, r = 0, g = 0, b = 255, a = 75, speed = 0, receiver = 0, bool:reliable = true)
 {
 	if(receiver && !is_user_connected(receiver))
 		return 0;
