@@ -21,7 +21,7 @@
 
 #define _msgstocks_included
 
-#define MSGSTOCKS_VERSION 1.0
+#define MSGSTOCKS_VERSION 1.0.1
 
 /**
  * @section Normal message stocks
@@ -502,12 +502,12 @@ stock cs_draw_progress_bar(id, duration, startpercent = 0, bool:reliable = true)
 
 		message_begin(get_msg_destination(id, reliable), MSG_BarTime, .player = id);
 	}
-	
+
 	write_short(duration);
 
 	if(startpercent)
 		write_short(startpercent);
-	
+
 	message_end();
 	return 1;
 }
@@ -1132,7 +1132,7 @@ stock te_place_decal_from_bsp_file(position[3], texture, entity = 0, entabove = 
 	write_coord(position[2]);
 	write_short(texture);
 	write_short(entity);
-	
+
 	if(entity)
 		write_short(entabove);
 
@@ -1476,7 +1476,7 @@ stock te_create_beam_cylinder(position[3], sprite, axis[3] = {0, 0, 0}, startfra
 }
 
 /**
- * Creates a decaying beam that follows the entity until it stops moving. 
+ * Creates a decaying beam that follows the entity until it stops moving.
  *
  * @note A common sprite to use is "sprites/laserbeam.spr"
  * @note When the entity stops moving, the beam will become visible again
@@ -1587,7 +1587,7 @@ stock te_display_glow_sprite(position[3], sprite, scale = 10, size = 10, brightn
  * @return              0 if "receiver" is non-zero and the client isn't connected,
  *                      1 otherwise
  */
-stock te_create_beam_ring_between_entities(startent, endent, sprite, startframe = 0, framerate = 30, life = 10, width = 10, noise = 0, r = 0, g = 0, b = 255, a = 75, speed = 0, receiver = 0, bool:reliable = true)
+ stock te_create_beam_ring_between_ent(startent, endent, sprite, startframe = 0, framerate = 30, life = 10, width = 10, noise = 0, r = 0, g = 0, b = 255, a = 75, speed = 0, receiver = 0, bool:reliable = true)
 {
 	if(receiver && !is_user_connected(receiver))
 		return 0;
@@ -2613,7 +2613,7 @@ stock te_create_sprite_shower(position[3], model, direction[3] = {0, 0, 0}, coun
 stock te_emit_sprite_from_player(player, sprite, count = 1, variance = 0, receiver = 0, bool:reliable = true)
 {
 	if(receiver && !is_user_connected(receiver))
-		return 0;	
+		return 0;
 
 	message_begin(get_msg_destination(receiver, reliable), SVC_TEMPENTITY, .player = receiver);
 	write_byte(TE_PLAYERSPRITES);
@@ -2755,11 +2755,11 @@ stock te_attach_model_to_player(player, model, offset = 0, life = 5, receiver = 
  *
  * @noreturn
  * @error               If "receiver" is non-zero and the client isn't
- * 
+ *
  * @return              0 if "receiver" is non-zero and the client isn't connected,
  *                      1 otherwise
  */
-stock te_remove_all_player_attachments(player, receiver = 0, bool:reliable = true)
+stock te_remove_player_attachments(player, receiver = 0, bool:reliable = true)
 {
 	if(receiver && !is_user_connected(receiver))
 		return 0;
